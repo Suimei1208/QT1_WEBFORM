@@ -1,0 +1,33 @@
+﻿@page "/Items/Edit/{id}"
+@model QT1_WEB.Pages.Items.EditModel
+
+@{
+    var message = ViewData["Message"]?.ToString();
+}
+<form method="post">
+    <h1 class="mb-3">Edit Items</h1>
+    @if (!string.IsNullOrEmpty(message))
+    {
+        <div class="alert alert-success" role="alert">@message</div>
+    }
+        <div class="mb-3">
+            <label class="form-label">Item ID</label>
+            <input type="text" class="form-control" asp-for="Item.ItemId" readonly />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Item Name</label>
+            <input type="text" class="form-control" asp-for="Item.ItemName" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Size</label>
+            <input type="text" class="form-control" asp-for="Item.Size" />
+        </div>
+
+        <div class="mb-3 d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary" asp-page-handler="Update">Update</button>
+        <button type="submit" class="btn btn-danger" asp-page-handler="Delete">Delete</button>
+
+        </div>
+</form>

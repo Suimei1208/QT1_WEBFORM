@@ -1,0 +1,25 @@
+﻿@page
+@model QT1_WEB.Pages.Order.addModel
+@{
+    var message = ViewData["Message"]?.ToString();
+}
+
+<form method="post">
+    <h1>Add New Order</h1>
+    @if (!string.IsNullOrEmpty(message))
+    {
+        <div class="alert alert-success" role="alert">@message</div>
+    }
+
+    <div class="mb-3">
+        <label class="form-label">Customer ID</label>
+        <input type="text" class="form-control" asp-for="OrderRequest.CustId" />
+    </div>
+
+    <div class="mb-3 d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary" asp-page-handler="Add">Add</button>
+        <a href="/Order/list" class="btn btn-warning text-dark">
+            Return List
+        </a>
+    </div>
+</form>

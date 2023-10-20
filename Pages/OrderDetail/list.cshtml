@@ -1,0 +1,48 @@
+﻿@page "/OrderDetail/list/{id}"
+@model QT1_WEB.Pages.OrderDetail.listModel
+@{
+    var message = ViewData["Message"]?.ToString();
+}
+
+<h1 class="mb-3">List Of Orders Details</h1>
+
+<div class="d-flex justify-content-between mb-3">
+    <a href="/OrderDetail/add/@message" class="btn btn-warning text-dark">Add</a>
+</div>
+
+@if (Model.OrderDetailViewModel != null && Model.OrderDetailViewModel.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Order ID</th>               
+                <th>Item ID</th>
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Unit Amount</th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderDetailViewModel)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.OrderId</td>
+                    <td>@item.ItemName</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.UnitAmount</td>
+                    <td>
+                        <form asp-page-handler="Delete" asp-route-id="@item.Id">
+                            <input type="hidden" name="returnUrl" value="" />
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

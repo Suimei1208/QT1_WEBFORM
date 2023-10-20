@@ -1,0 +1,38 @@
+﻿@page
+@model QT1_WEB.Pages.Agents.listModel
+@{
+}
+<h1 class="mb-3">List Of Agents</h1>
+
+<div class="d-flex justify-content-between mb-3">
+    <a href="/Agents/add" class="btn btn-warning text-dark">Add</a>
+</div>
+
+@if (Model.Customer != null && Model.Customer.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Adress</th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Customer)
+            {
+                <tr>
+                    <td>@item.CustId</td>
+                    <td>@item.CustName</td>
+                    <td>@item.Address</td>
+                    <td>
+                        <a href="/Agents/Edit/@item.CustId" class="btn btn-dark">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

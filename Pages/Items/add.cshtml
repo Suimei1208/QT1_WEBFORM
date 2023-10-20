@@ -1,0 +1,31 @@
+﻿@page
+@model QT1_WEB.Pages.Items.addModel
+@{
+    var message = ViewData["Message"]?.ToString();
+}
+
+<form method="post">
+    <h1>Add New Items</h1>
+    @if (!string.IsNullOrEmpty(message))
+    {
+        <div class="alert alert-success" role="alert">@message</div>
+    }
+
+
+    <div class="mb-3">
+        <label class="form-label">Item Name</label>
+        <input type="text" class="form-control" asp-for="ItemsRequest.ItemName" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Size</label>
+        <input type="text" class="form-control" asp-for="ItemsRequest.Size" />
+    </div>
+
+    <div class="mb-3 d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary" asp-page-handler="Add">Add</button>
+        <a href="/Items/list" class="btn btn-warning text-dark">
+            Return List
+        </a>
+    </div>
+</form>

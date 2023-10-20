@@ -1,0 +1,38 @@
+﻿@page
+@model QT1_WEB.Pages.Items.listModel
+@{
+
+}
+<h1 class="mb-3">List Of Items</h1>
+
+<div class="d-flex justify-content-between mb-3">
+    <a href="/Items/add" class="btn btn-warning text-dark">Add</a>
+</div>
+
+@if(Model.Items != null && Model.Items.Any()){
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Size</th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.ItemId</td>
+                    <td>@item.ItemName</td>
+                    <td>@item.Size</td>
+                    <td>
+                        <a href="/Items/Edit/@item.ItemId" class="btn btn-dark">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

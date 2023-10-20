@@ -1,0 +1,45 @@
+﻿@page
+@model QT1_WEB.Pages.Order.ListModel
+@{
+}
+<h1 class="mb-3">List Of Orders</h1>
+
+<div class="d-flex justify-content-between mb-3">
+    <a href="/Order/add" class="btn btn-warning text-dark">Add</a>
+</div>
+
+@if (Model.Orders != null && Model.Orders.Any())
+{
+    <form method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Order Date</th>
+                <th>Customer ID</th>
+                <th>Customer Name</th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Orders)
+            {
+                <tr>
+                    <td>@item.OrderId</td>
+                    <td>@item.OrderDate</td>
+                    <td>@item.CustId</td>
+                    <td>@item.CustomerName</td>
+                    <td>
+                        <div class="mb-3 d-flex justify-content-between">
+                            <button type="submit" class="btn btn-danger" asp-page-handler="Delete" asp-route-id="@item.OrderId">Delete</button>
+                            <a href="/OrderDetail/list/@item.OrderId" class="btn btn-dark">Detail</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </form>
+}

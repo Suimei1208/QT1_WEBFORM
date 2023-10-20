@@ -1,0 +1,72 @@
+﻿@page "/OrderDetail/add/{id}"
+@model QT1_WEB.Pages.OrderDetail.addModel
+@{
+    var message = ViewData["Message"]?.ToString();
+    var id = ViewData["ID"]?.ToString();
+    
+}
+<h1>Please check table to fill Item ID correct</h1>
+@if (!string.IsNullOrEmpty(message))
+{
+    <div class="alert alert-success" role="alert">@message</div>
+}
+<div class="container">
+    <div class="row">       
+        <div class="col-md-5">
+            <form method="post">
+            <div class="form-group">
+                <label for="input1" class="form-label">Id</label>
+                <input type="text" class="form-control" asp-for="OrderDetailadd.Id" readonly value="@id"/>
+            </div>
+          
+            <div class="form-group">
+                <label for="input3" class="form-label">Item ID</label>
+                <input type="text" class="form-control" asp-for="OrderDetailadd.ItemId" />
+            </div>
+            <div class="form-group">
+                <label for="input4" class="form-label">Quantity</label>
+                <input type="text" class="form-control" asp-for="OrderDetailadd.Quantity" />
+            </div>
+            <div class="form-group">
+                <label for="input5" class="form-label">UnitAmount</label>
+                <input type="text" class="form-control" asp-for="OrderDetailadd.UnitAmount" />
+            </div>
+            <button type="submit" class="btn btn-primary" asp-page-handler="Add">Add</button>
+            <a href="/Order/list" class="btn btn-warning text-dark">
+                Return List
+            </a>
+            </form>
+           </div> 
+        
+        <div class="col-md-7">
+            @if (Model.Items != null && Model.Items.Any())
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Size</th>
+                            <th>
+
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>@item.ItemId</td>
+                                <td>@item.ItemName</td>
+                                <td>@item.Size</td>
+                                <td>
+                                    <a href="/Items/Edit/@item.ItemId" class="btn btn-dark">Edit</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>
